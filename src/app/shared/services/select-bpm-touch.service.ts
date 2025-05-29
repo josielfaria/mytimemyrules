@@ -10,6 +10,9 @@ export class SelectBpmTouchService {
   private tapTimeout: any = null;
 
   registerTap() {
+    this.controlService.stopMetronome();
+    this.controlService.toggleMetronome();
+
     const now = Date.now();
 
     // Limpa taps antigos (após 2 segundos sem tap, reinicia)

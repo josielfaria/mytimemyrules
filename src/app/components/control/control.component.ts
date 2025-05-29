@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ControlService } from 'src/app/shared/services/control.service';
 
 @Component({
@@ -6,10 +6,16 @@ import { ControlService } from 'src/app/shared/services/control.service';
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss'],
 })
-export class ControlComponent {
+export class ControlComponent implements OnInit {
   toggle = false;
 
   constructor(private controlService: ControlService) {}
+
+  ngOnInit(): void {
+    this.controlService.metronomeStopped$.subscribe((stopped) => {
+      this.toggle = stopped;
+    });
+  }
 
   private startMetronome(): void {
     this.controlService.startMetronome();

@@ -14,6 +14,9 @@ export class ControlService {
   private slideRangerBpmSubject = new BehaviorSubject<number>(this.bpm);
   slideRangerBpm$ = this.slideRangerBpmSubject.asObservable();
 
+  private metronomeStoppedSubject = new Subject<boolean>();
+  metronomeStopped$ = this.metronomeStoppedSubject.asObservable();
+
   private metronomeInterval: any = null;
   private metronomeSubject = new Subject<void>();
   metronome$ = this.metronomeSubject.asObservable();
@@ -139,6 +142,10 @@ export class ControlService {
       clearInterval(this.metronomeInterval);
       this.metronomeInterval = null;
     }
+  }
+
+  async toggleMetronome() {
+    this.metronomeStoppedSubject.next(false);
   }
 
   async setBPM(bpm: number) {
