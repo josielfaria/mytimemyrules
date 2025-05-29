@@ -23,4 +23,12 @@ export class ControlComponent {
     this.toggle ? this.stopMetronome() : this.startMetronome();
     this.toggle = !this.toggle;
   }
+
+  decreaseBpm(): void {
+    this.controlService.decreaseBpm();
+  }
+
+  increaseBpm(): void {
+    this.controlService.increaseBpm();
+  }
 }

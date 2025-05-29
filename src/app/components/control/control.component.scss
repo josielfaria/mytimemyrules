@@ -5,6 +5,14 @@
   cursor: pointer;
 }
 
-.btn-control img{
+.btn-control img {
   width: 150px;
+}
+
+.btn-control.c-bpm img {
+  width: 75px;
+}
+
+.btn-control.c-bpm img:hover {
+  transform: scale(1.1);
 }

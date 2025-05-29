@@ -23,6 +23,8 @@ export class ControlService {
   private beatCount: number = 0;
   private beatsPerBar: number = 4; // Dividir por 4
 
+  private accentBuffer: AudioBuffer | null = null;
+
   async startAudio() {
     if (!this.audioCtx) {
       this.audioCtx = new (window.AudioContext ||
@@ -30,6 +32,24 @@ export class ControlService {
     }
     if (this.audioCtx.state === 'suspended') {
       await this.audioCtx.resume();
+    }
+  }
+
+  async increaseBpm() {
+    this.bpm += 1;
+    this.bpmSubject.next(this.bpm);
+    if (this.metronomeInterval) {
+      await this.startMetronome();
+    }
+  }
+
+  async decreaseBpm() {
+    if (this.bpm > 1) {
+      this.bpm -= 1;
+      this.bpmSubject.next(this.bpm);
+      if (this.metronomeInterval) {
+        await this.startMetronome();
+      }
     }
   }
 
@@ -72,10 +92,6 @@ export class ControlService {
     };
   }
 
-  // Adicione esta propriedade na sua classe:
-  private accentBuffer: AudioBuffer | null = null;
-
-  // Modifique o startMetronome:
   async startMetronome() {
     this.stopMetronome();
     await this.startAudio();
