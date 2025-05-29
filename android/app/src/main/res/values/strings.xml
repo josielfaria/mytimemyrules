@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">mytimemyrules</string>
+    <string name="title_activity_main">mytimemyrules</string>
+    <string name="package_name">com.mytimemyrule.app</string>
+    <string name="custom_url_scheme">com.mytimemyrule.app</string>
+</resources>
