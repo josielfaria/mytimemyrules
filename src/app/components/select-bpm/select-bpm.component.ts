@@ -8,12 +8,17 @@ import { ControlService } from 'src/app/shared/services/control.service';
 })
 export class SelectBpmComponent implements OnInit {
   bpm: number = 55;
+  slideRangerBpm: number = 1;
 
   constructor(private controlService: ControlService) {}
 
   ngOnInit(): void {
     this.controlService.bpm$.subscribe((bpm) => {
       this.bpm = bpm;
+    });
+
+    this.controlService.slideRangerBpm$.subscribe((slideRangerBpm) => {
+      this.slideRangerBpm = slideRangerBpm;
     });
 
     this.controlService.loadSettings();

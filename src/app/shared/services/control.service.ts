@@ -11,6 +11,9 @@ export class ControlService {
   private bpmSubject = new BehaviorSubject<number>(this.bpm);
   bpm$ = this.bpmSubject.asObservable();
 
+  private slideRangerBpmSubject = new BehaviorSubject<number>(this.bpm);
+  slideRangerBpm$ = this.slideRangerBpmSubject.asObservable();
+
   private metronomeInterval: any = null;
   private metronomeSubject = new Subject<void>();
   metronome$ = this.metronomeSubject.asObservable();
@@ -40,6 +43,7 @@ export class ControlService {
       Number(this.storageService.getItem('controlButtonsBpm')) || 10;
 
     this.bpmSubject.next(this.bpm);
+    this.slideRangerBpmSubject.next(this.slideRangerBpm);
   }
 
   async startAudio() {
@@ -53,7 +57,7 @@ export class ControlService {
   }
 
   async increaseBpm() {
-    this.bpm += 1;
+    this.bpm += this.controlButtonsBpm;
     this.bpmSubject.next(this.bpm);
     if (this.metronomeInterval) {
       await this.startMetronome();
@@ -61,8 +65,8 @@ export class ControlService {
   }
 
   async decreaseBpm() {
-    if (this.bpm > 1) {
-      this.bpm -= 1;
+    if (this.bpm > this.controlButtonsBpm) {
+      this.bpm -= this.controlButtonsBpm;
       this.bpmSubject.next(this.bpm);
       if (this.metronomeInterval) {
         await this.startMetronome();
