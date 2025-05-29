@@ -1,0 +1,22 @@
+<nav class="mobile-bottom-nav">
+  <ul>
+    <li>
+      <a
+        (click)="nagivateTo('home')"
+        [ngClass]="{ 'force-focus': pathFocus === 'home' }"
+      >
+        <img src="assets/images/icons/metronome.svg" alt="" />
+        <span class="label">Metronome</span>
+      </a>
+    </li>
+    <li>
+      <a
+        (click)="nagivateTo('config')"
+        [ngClass]="{ 'force-focus': pathFocus === 'config' }"
+      >
+        <img src="assets/images/icons/options.svg" alt="" />
+        <span class="label">Config</span>
+      </a>
+    </li>
+  </ul>
+</nav>
