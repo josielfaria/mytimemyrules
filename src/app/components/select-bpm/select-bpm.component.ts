@@ -7,7 +7,7 @@ import { ControlService } from 'src/app/shared/services/control.service';
   styleUrls: ['./select-bpm.component.scss'],
 })
 export class SelectBpmComponent implements OnInit {
-  bpm: number = 70;
+  bpm: number = 55;
 
   constructor(private controlService: ControlService) {}
 
@@ -15,6 +15,8 @@ export class SelectBpmComponent implements OnInit {
     this.controlService.bpm$.subscribe((bpm) => {
       this.bpm = bpm;
     });
+
+    this.controlService.loadSettings();
   }
 
   setBPM(bpm: number) {

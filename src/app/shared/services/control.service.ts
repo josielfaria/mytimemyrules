@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class ControlService {
-  constructor() {}
-
   private bpm: number = 70; // Default BPM
+  private slideRangerBpm: number = 10; // Default step for slide ranger
+  private controlButtonsBpm: number = 10; // Default step for control buttons
 
-  private bpmSubject = new Subject<number>();
+  private bpmSubject = new BehaviorSubject<number>(this.bpm);
   bpm$ = this.bpmSubject.asObservable();
 
   private metronomeInterval: any = null;
@@ -24,6 +25,22 @@ export class ControlService {
   private beatsPerBar: number = 4; // Dividir por 4
 
   private accentBuffer: AudioBuffer | null = null;
+
+  constructor(private storageService: StorageService) {
+    this.loadSettings();
+  }
+
+  loadSettings(): void {
+    this.bpm = Number(this.storageService.getItem('initialBpm')) || 70;
+
+    this.slideRangerBpm =
+      Number(this.storageService.getItem('slideRangerBpm')) || 10;
+
+    this.controlButtonsBpm =
+      Number(this.storageService.getItem('controlButtonsBpm')) || 10;
+
+    this.bpmSubject.next(this.bpm);
+  }
 
   async startAudio() {
     if (!this.audioCtx) {

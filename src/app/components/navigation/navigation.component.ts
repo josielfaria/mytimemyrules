@@ -25,12 +25,6 @@ export class NavigationComponent implements OnInit {
       this.controlService.stopMetronome();
     }
 
-    this.router.navigate([path]).then((success) => {
-      if (success) {
-        console.log(`Navigation to ${path} was successful`);
-      } else {
-        console.error(`Navigation to ${path} failed`);
-      }
-    });
+    this.router.navigate([path]).then((success) => {});
   }
 }
