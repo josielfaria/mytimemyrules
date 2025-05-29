@@ -22,7 +22,11 @@ input[type="range"] {
   &::-webkit-slider-runnable-track {
     height: 25px;
     background: transparent;
-    border: 1px solid #2B343D;
+    border: 1px solid #2b343d;
     border-radius: 8px;
   }
+}
+
+.text-bpm {
+  color: rgb(241, 225, 154);
 }
