@@ -1,0 +1,13 @@
+<div class="mt-3">
+  <label for="customRange1" class="text-bpm form-label d-flex justify-content-center">BPM: {{ bpm }}</label>
+  <input
+    type="range"
+    class="form-range"
+    id="customRange1"
+    [(ngModel)]="bpm"
+    (ngModelChange)="setBPM($event)"
+    min="10"
+    max="300"
+    step="10"
+  />
+</div>
