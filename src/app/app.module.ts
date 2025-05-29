@@ -11,6 +11,7 @@ import { VolumeComponent } from './components/volume/volume.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { VisualMetronomeComponent } from './components/visual-metronome/visual-metronome.component';
+import { SelectBpmTouchComponent } from './components/select-bpm-touch/select-bpm-touch.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { VisualMetronomeComponent } from './components/visual-metronome/visual-m
     ControlComponent,
     VolumeComponent,
     VisualMetronomeComponent,
+    SelectBpmTouchComponent,
   ],
   imports: [BrowserModule, FormsModule, AppRoutingModule, NgbModule],
   providers: [],
