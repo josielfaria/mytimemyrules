@@ -15,6 +15,8 @@ export class ControlComponent implements OnInit {
     this.controlService.metronomeStopped$.subscribe((stopped) => {
       this.toggle = stopped;
     });
+    
+    this.checkSpaceBarPress();
   }
 
   private startMetronome(): void {
@@ -23,6 +25,15 @@ export class ControlComponent implements OnInit {
 
   private stopMetronome(): void {
     this.controlService.stopMetronome();
+  }
+
+  private checkSpaceBarPress(): void {
+    document.addEventListener('keydown', (event) => {
+      if (event.code === 'Space') {
+        event.preventDefault();
+        this.togglePlay();
+      }
+    });
   }
 
   togglePlay(): void {
